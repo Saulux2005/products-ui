@@ -9,12 +9,19 @@ public class Product {
     private String name;
     private BigDecimal price;
     private double quantity;
+    private String description;
 
-    public Product(String name, BigDecimal price, double quantity) {
+
+    public Product() {
+        this.id = UUID.randomUUID();
+    }
+
+    public Product(String name, BigDecimal price, double quantity, String description) {
         this.id = UUID.randomUUID();
         this.name = name;
         this.price = price;
         this.quantity = quantity;
+        this.description = description;
     }
 
     public UUID getId() {
@@ -47,5 +54,13 @@ public class Product {
 
     public void setQuantity(double quantity) {
         this.quantity = quantity;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
     }
 }

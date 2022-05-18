@@ -4,8 +4,8 @@ import lt.bit.productsui.model.Product;
 import lt.bit.productsui.service.ProductService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.util.StringUtils;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import java.util.UUID;
@@ -31,6 +31,43 @@ class ProductController {
         List<Product> products = service.getProducts();
         model.addAttribute("productItem", service.getProduct(id));
         return  "productForm";
+    }
+
+    @GetMapping("/products/add")
+    String addProduct(Model model) {
+        List<Product> products = service.getProducts();
+        model.addAttribute("productItem", new Product());
+        return  "productForm";
+    }
+
+    @PostMapping("products/save")
+    String saveProduct(@ModelAttribute Product product, Model model) {
+        String error = hasError(product.getName());
+        if (error != null) {
+            model.addAttribute("errorMsg", error);
+            model.addAttribute("productItem", product);
+            return "productForm";
+        }
+        service.saveProduct(product);
+        return "redirect:/products";
+    }
+
+    private String hasError(String name) {
+
+        if (!StringUtils.hasLength(name)) {
+            return "Name is required";
+        }
+
+        if (name.length() < 3) {
+            return "Name is to short";
+        }
+        return null;
+    }
+
+    @GetMapping("/products/delete")
+    String deleteProduct(@RequestParam UUID id) {
+        service.deleteProduct(id);
+        return "redirect:/products";
     }
 
 }
