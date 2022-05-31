@@ -9,6 +9,14 @@ public class Supplier {
   private String companyCode;
   private String vatCode;
 
+  public Supplier(UUID id, String name) {
+    this.id = id;
+    this.name = name;
+  }
+
+  public Supplier() {
+  }
+
   public UUID getId() {
     return id;
   }
