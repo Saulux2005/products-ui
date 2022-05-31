@@ -1,4 +1,4 @@
-package lt.bit.productsui;
+package lt.bit.products.ui;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
