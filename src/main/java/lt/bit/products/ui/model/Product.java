@@ -10,6 +10,16 @@ public class Product {
   private BigDecimal price;
   private double quantity;
   private String description;
+  private byte[] image;
+
+  public byte[] getImage() {
+    return image;
+  }
+
+  public void setImage(byte[] image) {
+    this.image = image;
+  }
+
   private UUID supplierId;
 
   public UUID getId() {

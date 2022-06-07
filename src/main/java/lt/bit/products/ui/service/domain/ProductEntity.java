@@ -36,6 +36,9 @@ public class ProductEntity implements Serializable {
   private BigDecimal price;
   private double quantity;
   private String description;
+
+
+  private byte[] image;
   private UUID supplierId;
 
   public UUID getId() {
@@ -80,6 +83,14 @@ public class ProductEntity implements Serializable {
 
   public UUID getSupplierId() {
     return supplierId;
+  }
+
+  public byte[] getImage() {
+    return image;
+  }
+
+  public void setImage(byte[] image) {
+    this.image = image;
   }
 
   public void setSupplierId(UUID supplierId) {
